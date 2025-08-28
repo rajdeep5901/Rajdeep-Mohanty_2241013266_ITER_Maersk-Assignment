@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>NDAC Dashboard</title>
+    <style>
+        body{font-family:Inter,system-ui,Arial;padding:24px;background:#0b1220;color:#e5e7eb}
+        h1{margin:0 0 16px 0}
+        table{width:100%;border-collapse:collapse;margin-top:12px}
+        th,td{padding:10px;border-bottom:1px solid #222}
+        .ok{color:#16a34a}.err{color:#ef4444}
+        .tag{padding:2px 8px;border-radius:999px;background:#111;border:1px solid #222}
+    </style>
+</head>
+<body>
+    <h1>NDAC Alarm Notifications</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th><th>Severity</th><th>Type</th><th>Element</th><th>Message</th><th>Time</th><th>Sent</th><th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for n,a in rows %}
+            <tr>
+                <td>{{ a.id if a else "-" }}</td>
+                <td><span class="tag">{{ a.sev if a else "-" }}</span></td>
+                <td>{{ a.typ if a else "-" }}</td>
+                <td>{{ a.elem if a else "-" }}</td>
+                <td>{{ a.msg if a else "-" }}</td>
+                <td>{{ a.ts if a else "-" }}</td>
+                <td>{{ n.sent_at }}</td>
+                <td class="{{ 'ok' if n.status=='SENT' else 'err' }}">{{ n.status }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Severity: {{ sev }}
+Type: {{ typ }}
+Element: {{ elem }}
+Time: {{ ts }}
+Message: {{ msg }}
